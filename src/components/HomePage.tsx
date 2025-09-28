@@ -1,6 +1,5 @@
 "use client";
 import StaggeredMenu from "@/components/homepage/StaggeredMenu";
-import PillNav from "@/components/homepage/PillNav";
 import Hero from "./homepage/Hero";
 
 // Definisi komponen HomePage dan ekspor sebagai default
