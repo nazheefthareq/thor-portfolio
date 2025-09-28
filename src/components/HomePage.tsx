@@ -1,5 +1,7 @@
 "use client";
-import StaggeredMenu from "./StaggeredMenu";
+import StaggeredMenu from "@/components/homepage/StaggeredMenu";
+import PillNav from "@/components/homepage/PillNav";
+import Hero from "./homepage/Hero";
 
 // Definisi komponen HomePage dan ekspor sebagai default
 export default function HomePage() {
@@ -19,7 +21,7 @@ export default function HomePage() {
 
     // Komponen harus mengembalikan (return) elemen JSX
     return (
-        <nav className="md:mx-10 sm:mx-4">
+        <div className="md:mx-10 sm:mx-4">
             <div style={{ height: '100vh', background: '#FFFFFF' }}>
                 <StaggeredMenu
                     position="right"
@@ -36,7 +38,10 @@ export default function HomePage() {
                     onMenuOpen={() => console.log('Menu opened')}
                     onMenuClose={() => console.log('Menu closed')}
                 />
+                
+
+                <Hero />
             </div>
-        </nav>
+        </div>
     );
 }
