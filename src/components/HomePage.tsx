@@ -19,7 +19,7 @@ export default function HomePage() {
 
     // Komponen harus mengembalikan (return) elemen JSX
     return (
-        <nav className="md:mx-10 sm:mx-4">
+        <nav className="relative md:mx-10 sm:mx-4">
             <div style={{ height: '100vh', background: '#FFFFFF' }}>
                 <StaggeredMenu
                     position="right"
