@@ -1,6 +1,4 @@
-"use client";
-import StaggeredMenu from "./StaggeredMenu";
-import Hero from "./homepage/Hero";
+
 
 // Definisi komponen HomePage dan ekspor sebagai default
 export default function HomePage() {
@@ -37,8 +35,6 @@ export default function HomePage() {
                     onMenuOpen={() => console.log('Menu opened')}
                     onMenuClose={() => console.log('Menu closed')}
                 />
-
-                <Hero />
             </div>
         </div>
     );
