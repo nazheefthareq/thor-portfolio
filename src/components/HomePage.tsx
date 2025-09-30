@@ -1,7 +1,7 @@
 "use client";
 
-import Hero from "./homepage/Hero";
-import StaggeredMenu from "./homepage/StaggeredMenu";
+import Hero from "@/components/homepage/Hero";
+import StaggeredMenu from "@/components/homepage/StaggeredMenu";
 
 // Definisi komponen HomePage dan ekspor sebagai default
 export default function HomePage() {

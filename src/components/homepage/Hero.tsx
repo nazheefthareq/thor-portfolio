@@ -5,7 +5,7 @@ export default function Hero() {
         <section className="min-h-screen flex items-center justify-start px-8 sm:px-16 lg:px-24">
             {/* 1. Div pembungkus untuk semua konten hero */}
             <div className="flex flex-col items-start">
-                <span className='text-2xl md:text-4xl'>Hi! I&apos;m</span>
+                <span className='text-2xl md:text-3xl'>Hi! I&apos;m</span>
                 
                 <GradientText
                     colors={["#4e71ff", "#8dd8ff", "#4079ff", "#8DD8FF", "#4e71ff"]}
