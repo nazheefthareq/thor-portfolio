@@ -1,3 +1,5 @@
+"use client";
+
 import Hero from "./homepage/Hero";
 import StaggeredMenu from "./homepage/StaggeredMenu";
 
