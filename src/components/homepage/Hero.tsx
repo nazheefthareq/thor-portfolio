@@ -34,7 +34,7 @@ export default function Hero({ className = '' }: HeroProps) {
           />
         </div>
 
-        <div className="flex flex-row gap-4 mt-8">
+        <div className=" flex flex-row gap-4 mt-8">
           <GradientButton href="#work">My Work</GradientButton>
         </div>
       </div>

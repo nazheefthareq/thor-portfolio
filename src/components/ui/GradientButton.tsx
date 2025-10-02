@@ -21,7 +21,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({ href, children }) => {
             relative inline-block p-[2px] rounded-full 
             bg-gradient-to-r from-[#4E71FF] to-[#8DD8FF] 
             transition-transform duration-300 ease-in-out hover:scale-105
-            z-[1000]
+            pointer-events-auto z-[9999]   
         "
     >
       {/* 2. Elemen Dalam (Konten Tombol) */}

@@ -355,13 +355,17 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     <div className="sm-scope w-full h-full">
       <div
         className={(className ? className + ' ' : '') + 'staggered-menu-wrapper overflow-hidden relative w-full h-full' + (sticky ? ' sm-sticky' : '')}
-        style={accentColor ? ({ ['--sm-accent' as any]: accentColor } as React.CSSProperties) : undefined}
+        style={{
+          ...(accentColor ? ({ ['--sm-accent' as any]: accentColor } as React.CSSProperties) : {}),
+          zIndex: open ? 10001 : 39
+        }}
         data-position={position}
         data-open={open || undefined}
       >
         <div
           ref={preLayersRef}
           className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none "
+          style={{ zIndex: open ? 9998 : 5 }}
           aria-hidden="true"
         >
           {(() => {
@@ -439,8 +443,13 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px]"
-          style={{ WebkitBackdropFilter: 'blur(12px)' }}
+          className={` ${open ? 'z-50 pointer-events-auto opacity-100'
+            : 'z-0 pointer-events-none opacity-0'} staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 backdrop-blur-[12px]`}
+          style={{
+            WebkitBackdropFilter: 'blur(12px)',
+            zIndex: open ? 9999 : 10,
+            pointerEvents: open ? 'auto' : 'none'
+          }}
           aria-hidden={!open}
         >
           <div className="sm-panel-inner flex-1 flex flex-col gap-5">
@@ -502,12 +511,20 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       </div>
 
       <style>{`
-.sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; }
-/* When sticky prop is enabled we switch the wrapper to fixed so it behaves like a navbar overlaying other content.
+.sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 10001; }
+/* When sticky prop is enabled we switch the wrapper to fixed soit behaves like a navbar overlaying other content.
    We keep height:100vh so the internal panel which uses h-full continues to work unchanged. */
 .sm-scope .staggered-menu-wrapper.sm-sticky { position: fixed !important; top: 0; left: 0; width: 100%; height: 100vh;  }
-.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 2em; background: transparent; pointer-events: none; z-index: 20; }
-.sm-scope .staggered-menu-header > * { pointer-events: auto; }
+.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 2em; background: transparent; pointer-events: none; z-index: 10003 !important; }
+.sm-scope .staggered-menu-header > button,
+.sm-scope .staggered-menu-header > .menu-toggle {
+  pointer-events: auto;
+  z-index: 10005 !important;
+  position: relative;
+}
+.sm-scope.menu-open .staggered-menu-header {
+  z-index: 10010 !important;
+}
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
 .sm-scope .sm-logo-img { display: block; height: 32px; width: auto; object-fit: contain; }
 .sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.3rem; background: transparent; border: none; cursor: pointer; color: #e9e9ef; font-weight: 500; line-height: 1; overflow: visible; }
@@ -520,7 +537,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 10; }
+.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 10000 !important; }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
 .sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(260px, 38vw, 420px); pointer-events: none; z-index: 5; }
 .sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }
@@ -547,7 +564,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 @media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
 @media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } }
       `}</style>
-    </div>
+    </div >
   );
 };
 
