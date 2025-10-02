@@ -361,7 +361,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       >
         <div
           ref={preLayersRef}
-          className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-[5]"
+          className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none "
           aria-hidden="true"
         >
           {(() => {
@@ -505,7 +505,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; }
 /* When sticky prop is enabled we switch the wrapper to fixed so it behaves like a navbar overlaying other content.
    We keep height:100vh so the internal panel which uses h-full continues to work unchanged. */
-.sm-scope .staggered-menu-wrapper.sm-sticky { position: fixed !important; top: 0; left: 0; width: 100%; height: 100vh; z-index: 99999; }
+.sm-scope .staggered-menu-wrapper.sm-sticky { position: fixed !important; top: 0; left: 0; width: 100%; height: 100vh;  }
 .sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 2em; background: transparent; pointer-events: none; z-index: 20; }
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
