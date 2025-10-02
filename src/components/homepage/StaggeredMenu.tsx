@@ -27,6 +27,12 @@ export interface StaggeredMenuProps {
   changeMenuColorOnOpen?: boolean;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
+  /**
+   * When true the entire StaggeredMenu wrapper becomes fixed to the viewport
+   * (top:0, left:0, width:100%, height:100vh) so it behaves like a navbar
+   * overlaying other page content. Default: false
+   */
+  sticky?: boolean;
 }
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
@@ -43,7 +49,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   changeMenuColorOnOpen = true,
   accentColor = '#5227FF',
   onMenuOpen,
-  onMenuClose
+  onMenuClose,
+  sticky = false
 }: StaggeredMenuProps) => {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
@@ -347,7 +354,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   return (
     <div className="sm-scope w-full h-full">
       <div
-        className={(className ? className + ' ' : '') + 'staggered-menu-wrapper overflow-hidden relative w-full h-full z-40'}
+        className={(className ? className + ' ' : '') + 'staggered-menu-wrapper overflow-hidden relative w-full h-full' + (sticky ? ' sm-sticky' : '')}
         style={accentColor ? ({ ['--sm-accent' as any]: accentColor } as React.CSSProperties) : undefined}
         data-position={position}
         data-open={open || undefined}
@@ -496,6 +503,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
       <style>{`
 .sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; }
+/* When sticky prop is enabled we switch the wrapper to fixed so it behaves like a navbar overlaying other content.
+   We keep height:100vh so the internal panel which uses h-full continues to work unchanged. */
+.sm-scope .staggered-menu-wrapper.sm-sticky { position: fixed !important; top: 0; left: 0; width: 100%; height: 100vh; z-index: 99999; }
 .sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 2em; background: transparent; pointer-events: none; z-index: 20; }
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }

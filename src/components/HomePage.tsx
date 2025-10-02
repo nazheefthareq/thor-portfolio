@@ -3,9 +3,7 @@
 import Hero from "@/components/homepage/Hero";
 import StaggeredMenu from "@/components/homepage/StaggeredMenu";
 
-// Definisi komponen HomePage dan ekspor sebagai default
 export default function HomePage() {
-    // Definisi data menu di dalam komponen
     const menuItems = [
         { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
         { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
@@ -19,28 +17,27 @@ export default function HomePage() {
         { label: 'LinkedIn', link: 'https://linkedin.com' }
     ];
 
-    // Komponen harus mengembalikan (return) elemen JSX
-    return (
-        <div className="relative md:mx-10 sm:mx-4">
-            <div style={{ height: '100vh', background: '#FFFFFF' }}>
-                <StaggeredMenu
-                    position="right"
-                    items={menuItems}
-                    socialItems={socialItems}
-                    displaySocials={true}
-                    displayItemNumbering={true}
-                    menuButtonColor="#000000"
-                    openMenuButtonColor="#000000"
-                    changeMenuColorOnOpen={true}
-                    colors={['#B19EEF', '#5227FF']}
-                    logoUrl="/images/logos/logo-icon(black-blue).png"
-                    accentColor="#4E71FF"
-                    onMenuOpen={() => console.log('Menu opened')}
-                    onMenuClose={() => console.log('Menu closed')}
-                />
-
-                <Hero />
-            </div>
-        </div>
-    );
+return (
+    <div className="relative md:mx-10 sm:mx-4">
+      {/* StaggeredMenu with sticky prop enabled so it overlays the page like a navbar */}
+        <StaggeredMenu
+            position="right"
+            items={menuItems}
+            socialItems={socialItems}
+            displaySocials={true}
+            displayItemNumbering={true}
+            menuButtonColor="#000000"
+            openMenuButtonColor="#000000"
+            changeMenuColorOnOpen={true}
+            colors={["#2E4CC5", "#4E71FF"]}
+            logoUrl="/images/logos/logo-icon(black-blue).png"
+            accentColor="#4E71FF"
+            sticky={true}
+            onMenuOpen={() => console.log('Menu opened')}
+            onMenuClose={() => console.log('Menu closed')}
+        />
+        
+        <Hero />
+    </div>
+);
 }
