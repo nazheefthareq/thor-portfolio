@@ -18,7 +18,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="relative md:mx-10 sm:mx-4">
+    <>
       {/* StaggeredMenu with sticky prop enabled so it overlays the page like a navbar */}
       <StaggeredMenu
         position="right"
@@ -37,7 +37,9 @@ export default function HomePage() {
         onMenuClose={() => console.log('Menu closed')}
       />
 
-      <Hero />
-    </div>
+      <div className="relative md:mx-10 sm:mx-4">
+        <Hero />
+      </div >
+    </>
   );
 }
